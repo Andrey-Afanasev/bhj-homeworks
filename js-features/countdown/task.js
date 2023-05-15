@@ -1,5 +1,6 @@
 const timer = document.getElementById("timer");
 
+
 const timerok = () => {
     let numberTime = +timer.textContent;
    
@@ -9,12 +10,16 @@ const timerok = () => {
             clearInterval(idInterval)
             alert('«Вы победили в конкурсе!»')
         }
+
+        timer.textContent = numberTime;
     
     }, 1000)
+
+    
    
 }
 
-
+timerok()
 
 
 
