@@ -5,39 +5,47 @@ function getHole(index) {
     return document.getElementById(`hole${index}`)
 }
 
-/**это ченовые ноброски*/ 
 
-function qwe() {
+function click() {
 
-    let holeIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    for (let index = 0; index <= holeIndex.length; index++) {
+    for (let index = 1; index <= 9; index++) {
 
-        console.log(getHole(index)) /**тут я использую цикл для перебопа каждой лунки как написано в советах по заданию. он рабоатет */
+        console.log(getHole(index)) 
 
         getHole(index).onclick = function () {
-            alert('hallo')
-        } /**потом по моей логике, нужна функция которая котая при каждом клике на каждую лунку будет проверять, но тут выдает ошибку,
-         что я упускаю? или другой подход нужно использовать
-         */
 
+            let countsDead = +dead.textContent ;
+            let countLost = +lost.textContent ;
+
+
+            if (getHole(index).className.includes( 'hole_has-mole' )) {
+                dead.textContent = countsDead + 1;
+               
+            } else {
+                lost.textContent = countLost + 1;
+            }
+
+            if (countsDead === 10) {
+                alert('победа!')
+                dead.textContent = 0;
+                lost.textContent = 0;
+            }
+
+            if (countLost === 5) {
+                alert('проиграл!')
+                dead.textContent = 0;
+                lost.textContent = 0;
+            }
+
+            
+        } 
     
-}
+    }
 
 }
+    click()
 
-/**это тоже черновой код */
-
-
-let countsDead = +dead.textContent ;
-let countLost = +lost.textContent ;
-
-if (getHole(index).className.includes( 'hole_has-mole' )) { /* на сколько верен такой подход? */
-    dead.textContent = countsDead + 1;
-} else {
-    lost.textContent = countLost + 1;
-
-}
 
 
 
