@@ -1,24 +1,101 @@
 
-const tabsCont = document.getElementsByClassName('tab__content') /** с этим тоже самое что и с табами */
 
-/***НАХОДИМ ЭЛЕМЕНЬЫ МЕНЮ */
-
-const qwe = document.querySelectorAll('.tab')
-
-qwe[1].classList.add('tab_active') /**рабочий мтод, переключает класс меню */
+const tabSmoll = document.querySelectorAll('.tab') /**это вкладки */
+const tabsCont = document.querySelectorAll('.tab__content') /** дивы с контентами*/
 
 
-qwe.onclick = function() {   /**НО при клеке нет никакой реакции */
-    alert('ddv')
+
+const tabSwitch = () => {
+
+    const asd = (event) => {
+        tabSmoll.forEach((elem) => elem.classList.remove("tab_active"));
+        tabsCont.forEach((elem) => elem.classList.remove("tab__content_active"));
+
+        event.target.classList.add('tab_active')
+
+          /**тут у меня только на это ума хватило, как короче будет , если скажите тоя буду рад :) */
+
+        if (tabSmoll[0].className === 'tab tab_active') {    
+            tabsCont[0].classList.add("tab__content_active")
+        }
+
+        if (tabSmoll[1].className === 'tab tab_active') {
+            tabsCont[1].classList.add("tab__content_active")
+        }
+
+        if (tabSmoll[2].className === 'tab tab_active') {
+            tabsCont[2].classList.add("tab__content_active")
+        }
+        
+    
+    }
+
+    tabSmoll.forEach((elem) => {
+
+    elem.addEventListener('click', asd)
+    
+   
+});
+
+
 }
 
-function onClick() {
-  alert('sdvd')
+tabSwitch()
+
+
+/*
+function deleteContents() {
+    const tabsCont = document.getElementsByClassName('tab__content');
+    for (let i = 0; i <= tabsCont.length; i++)
+        tabsCont[i].classList.remove("tab__content_active");
 }
 
-qwe.addEventListener('click', onClick) /*addEventListener is not a function*/
+/*
 
-tabes.addEventListener
+const deleteTabSmoll = () => {     
+    const tabSmoll = document.querySelectorAll('.tab')
+    for (let i =0; i <= tabSmoll.length ; i++ )
+    tabSmoll[i].classList.remove("tab_active")
+}
+
+/*
+
+const deleteTabSmollTest = () => {     
+
+    const tabSmoll = document.querySelectorAll('.tab')
+    const tabsCont = document.getElementsByClassName('tab__content')
+
+
+
+
+
+    for (let i =0; i <= tabSmoll.length ; i++ ) {
+    tabSmoll[i].addEventListener('click', function () { 
+
+
+        if (tabSmoll[i].className.con( 'tab_active' )) {
+            tabSmoll[i].classList.add("tab_active")
+        }
+
+
+       
+
+    })
+    }
+}
+
+deleteTabSmollTest()
+
+
+
+
+
+
+tabSmoll[1].classList.add('tab_active') /**рабочий мтод, переключает класс меню */
+
+
+
+
 
 /**qwe.addEventListener('click', function(elem) => {elem.classList.add('tab_active')})
 
