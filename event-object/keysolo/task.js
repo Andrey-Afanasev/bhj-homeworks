@@ -27,7 +27,7 @@ class Game {
      */
        addEventListener ('keydown' , (element) => {
 
-        if(element.key === this.currentSymbol ) {
+        if(element.key === this.currentSymbol.textContent) {
           this.success()
         } else {
           this.fail()
