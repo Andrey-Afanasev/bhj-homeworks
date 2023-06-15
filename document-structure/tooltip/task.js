@@ -2,20 +2,27 @@ const has = document.querySelectorAll('.has-tooltip')
 
 
 
-const qwe = (e) => {
+const popupHint = (event) => {
 
-    e.preventDefault()
+    event.preventDefault()
 
+    console.log(event.target.getBoundingClientRect())
 
-    const podskozka = document.createElement('div')
-    podskozka.classList.add('tooltip');
-    podskozka.classList.add('tooltip_active');
-    podskozka.innerHTML = has[0].title
+    if (document.querySelector('.tooltip_active')) {
+        document.querySelector('.tooltip_active').remove()
+    }
+
+    const hinter = document.createElement('div')
+    hinter.classList.add('tooltip');
+    hinter.classList.add('tooltip_active');
+    hinter.textContent = event.target.title
+    hinter.style.left = event.target.getBoundingClientRect().left;
+    hinter.style.top = event.target.getBoundingClientRect().top;
+    
+    event.target.insertBefore(hinter, event.target.firstElementChild)
 
 }
 
 
 
-
-
-has.forEach((e) => e.addEventListener('click', qwe))
+has.forEach((e) => e.addEventListener('click', popupHint))
