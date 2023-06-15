@@ -5,9 +5,7 @@ const list = document.querySelector('.tasks__list')
 let newelem
 let dataId = 1
 
-function newnew() {
-    newelem = document.querySelectorAll('.task__remove')
-}
+
 
 const adderor = (e) => {
     e.preventDefault()
@@ -33,33 +31,34 @@ const adderor = (e) => {
         divtask.insertBefore(taskremove, divtask.fistElementChild)
         taskremove.textContent = 'удалить'
 
-        newnew()
 
     }
-
-
 
     const removfunc = (event) => {
-
-        let cvb = document.querySelectorAll('.task')[0]
-        cvb.remove()
-
-        ////newelem[0].closest('.task').getAttribute('data-id')
+       
     
-        console.log(event.target.closest('.task').getAttribute('data-id'))
+        let cvb = event.target.closest('.task')
 
+        cvb.remove()
+     
+        console.log(cvb)
+    
     
     }
     
-    newelem.forEach((e) => e.addEventListener('click', removfunc))
-    
-    
+    document.querySelectorAll('.task__remove').forEach((e) => e.addEventListener('click', removfunc))
+
 
     form.reset()
 }
 
 
+
+
 add.addEventListener('click' , adderor)
+
+
+
 
 
 
