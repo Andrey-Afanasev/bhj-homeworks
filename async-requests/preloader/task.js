@@ -4,38 +4,45 @@ xhr.open('GET', 'https://students.netoservices.ru/nestjs-backend/slow-get-course
 xhr.send()
 
 
-const item = document.querySelector('.item')
+const item = document.querySelectorAll('.item')
 const loader = document.getElementById('loader')
 const items = document.getElementById('items')
 
 
 const qwe = () => {
 
-    loader.classList.remove('loader_active')
+    if(xhr.readyState === xhr.DONE) {
 
+        loader.classList.remove('loader_active')
 
-    Object.entries(xhr.response.response.Valute).forEach((e) => {
+        Object.entries(xhr.response.response.Valute).forEach((e) => {
+
+        const newItem =document.createElement('div')
+        newItem.classList.add('item')
+        items.insertBefore(newItem, items.fistElementChild)
 
        
         const code = document.createElement('div')    
         code.classList.add('item__code')
         code.textContent = e[0]
-        item.insertBefore(code, item.fistElementChild)
+        newItem.insertBefore(code, newItem.fistElementChild)
 
         const value = document.createElement('div')
         value.classList.add('item__value')
         value.textContent = e[1].Value
-        item.insertBefore(value, item.fistElementChild)
+        newItem.insertBefore(value, newItem.fistElementChild)
 
         const currency = document.createElement('div')
         currency.classList.add('item__currency')
         currency.textContent = 'руб.'
-        item.insertBefore(currency, item.fistElementChild)
+        newItem.insertBefore(currency, newItem.fistElementChild)
 
        
     })
 
-    
+
+    }
+
 }
 
 
