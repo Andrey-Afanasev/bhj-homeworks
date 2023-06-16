@@ -1,9 +1,6 @@
 
-const pt = document.querySelector('.poll__title')
-const pa = document.getElementById('poll__answers')
-let answer
-
-function newel() { answer = document.querySelectorAll('.poll__answer')}
+const poolTitle = document.querySelector('.poll__title')
+const poolAnswers = document.getElementById('poll__answers')
 
 
 let xhr = new XMLHttpRequest()
@@ -12,39 +9,35 @@ xhr.open('GET', 'https://students.netoservices.ru/nestjs-backend/poll')
 xhr.send()
 
 
-///xhr.response.data.title /// вопрос
-////xhr.response.data.answers // массив вариантов
+const questionnairesDown= () => {
 
-const qwe = () => {
+    if(xhr.readyState === xhr.DONE) {
 
-const zagolovok = document.createElement('div')
-pt.insertBefore(zagolovok, pt.fistElementChild)
-zagolovok.textContent = xhr.response.data.title
+    const heading = document.createElement('div')
+    poolTitle.insertBefore(heading, poolTitle.fistElementChild)
+    heading.textContent = xhr.response.data.title
 
-let otveti = xhr.response.data.answers;
-otveti.forEach((e) => {
+    let answers = xhr.response.data.answers;
+    answers.forEach((e) => {
 
     const btn = document.createElement('button')
     btn.classList.add('poll__answer')
-    pa.insertBefore(btn, pa.fistElementChild)
+    poolAnswers.insertBefore(btn, poolAnswers.fistElementChild)
     btn.textContent = e
-    
-    newel()
 
-})
+    })
 
-newel()
+    }
 
+   const popUp = () => {
+
+        alert('Спасибоб ваш голос засчитан!')
+        location. reload()
+   }
+
+    document.querySelectorAll('.poll__answer').forEach((e) => e.addEventListener('click', popUp))
 
 }
 
+xhr.addEventListener('readystatechange', questionnairesDown)
 
-xhr.addEventListener('readystatechange', qwe)
-newel()
-answer.forEach((e) => e.addEventListener('click', alert('Спасибо, ваш голос засчитан!')))
-
-
-
-////* не могу никак навешать работающий обработчик, может из-за ошибки ? ругается на data, хотя в консоле все с ней отображает и находит
-
- 
