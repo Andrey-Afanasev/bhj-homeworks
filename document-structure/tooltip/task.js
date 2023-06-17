@@ -16,8 +16,9 @@ const popupHint = (event) => {
     hinter.classList.add('tooltip');
     hinter.classList.add('tooltip_active');
     hinter.textContent = event.target.title
-    hinter.style.left = event.target.getBoundingClientRect().left;
-    hinter.style.top = event.target.getBoundingClientRect().top;
+    const {left, top} = event.target.getBoundingClientRect()
+    hinter.style.left = `${left}px`;
+    hinter.style.top = `${top}px`;
     
     event.target.insertBefore(hinter, event.target.firstElementChild)
 
