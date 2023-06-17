@@ -18,6 +18,24 @@ const submitForms = (e) => {
 
     }
 
+
+
+  // отслеживаем процесс отправки
+  xhr.upload.onprogress = function(event) {
+    console.log(`Отправлено ${event.loaded} из ${event.total}`);
+    progress.value = event.loaded;
+  };
+
+  // Ждём завершения: неважно, успешного или нет
+  xhr.onloadend = function() {
+    if (xhr.status == 200) {
+      console.log("Успех");
+    } else {
+      console.log("Ошибка " + this.status);
+    }
+  };
+    
+
     xhr.addEventListener('readystatechange', subEvent)
 
     xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/upload')
