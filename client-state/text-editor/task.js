@@ -4,17 +4,13 @@ const storageName = localStorage.getItem('value')
 
 if (storageName) {
     editor.value = storageName
+} 
 
-} else {
-    localStorage.setItem('value', editor.value)
-}
-
-
-qwe = () => {
+textSave = () => {
     localStorage.removeItem('value')
     localStorage.setItem('value', editor.value)
 }
 
-editor.addEventListener('change', qwe)
+editor.addEventListener('input', textSave)
 
 
