@@ -1,20 +1,18 @@
 
 
 const modal = document.getElementById('subscribe-modal')
+const modalCook = document.cookie.split(';')
 
-
-if (document.cookie) {
-
-
-} else {
+if (!modalCook.includes("popup=modal_no_active")) {
     modal.classList.add('modal_active')
-}
 
+} 
 
-const qwe = (e) => {
+const close = (e) => {
     e.preventDefault()
     modal.classList.remove('modal_active')
-    document.cookie = 'modal_active'
+    document.cookie = 'popup' + '=' + 'modal_no_active'
 }
 
-document.querySelector('.modal__close').addEventListener('click', qwe)
+document.querySelector('.modal__close').addEventListener('click', close)
+
