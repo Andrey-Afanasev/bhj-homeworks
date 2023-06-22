@@ -2,9 +2,9 @@
 const editor = document.getElementById('editor')
 const storageName = localStorage.getItem('value')
 
-if (storageName) {
-    editor.value = storageName
-} 
+
+editor.value = storageName
+
 
 textSave = () => {
     localStorage.removeItem('value')
